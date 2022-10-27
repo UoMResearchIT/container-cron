@@ -18,11 +18,15 @@ Generally a pre-built image (available [here](ghcr.io/uomresearchit/container-cr
 
 > docker build . -t container-cron
 
-### Interactive usage ###
+### Local interactive usage ###
 
 To echo the date command into a file every minute:
 
 > docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' container-cron
+
+### Prebuilt interactive usage ###
+
+> docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' ghcr.io/uomresearchit/container-cron
 
 ### Compose usage ###
 
