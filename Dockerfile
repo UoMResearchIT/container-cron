@@ -1,8 +1,6 @@
 FROM alpine:3.16
 
-ARG cron_freq
-ARG cron_cmd
+ADD cronjob.sh /
+RUN chmod +x /cronjob.sh
 
-RUN echo -e "$cron_freq\t$cron_cmd" >> /var/spool/cron/crontabs/root
-
-CMD ["crond", "-f", ">", "/dev/stdout"]
+ENTRYPOINT [ "sh", "-c", "/cronjob.sh"]
