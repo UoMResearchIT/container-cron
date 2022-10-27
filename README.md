@@ -2,7 +2,7 @@
 
 This container runs a regularly scheduled cron job, specified through environment variables.
 
-## Details: ##
+## Details ##
 
 This container uses two environment variables:
 
@@ -10,7 +10,7 @@ This container uses two environment variables:
 
 `cron_cmd`: The command for cron to run e.g. `'echo hello > world.txt'`
 
-## Example usage: ##
+## Example usage ##
 
 ### Container build ###
 
