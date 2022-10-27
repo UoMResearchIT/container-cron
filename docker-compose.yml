@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  container-cron:
+    build: .
+    environment:
+      - cron_freq=*/1 * * * *
+      - cron_cmd=date >> /crontest.csv
