@@ -12,43 +12,63 @@ This container uses two environment variables:
 
 ## Example usage ##
 
-### Container build ###
+Two examples of usage will be given, the envisioned usage of the pre-built package (available [here](ghcr.io/uomresearchit/container-cron "Conatiner cron link")) and details on how to build and run the package locally.
 
-Generally a pre-built image (available [here](ghcr.io/uomresearchit/container-cron "Conatiner cron link")), should be used. If you wish to build locally for your own testing please issue:
+---
+### Use of pre-built image ###
 
-> docker build . -t container-cron
+Two methods for using the pre-built package are detailed here, using docker run and docker-compose.
 
-### Local interactive usage ###
+#### Prebuilt interactive usage (docker run) ####
 
-To echo the date command into a file every minute:
+To use the pre-built package from the command line the docker run command is used with the user specifying environment varables. For example, to echo the date command into a file every minute:
 
-> docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' container-cron
-
-### Prebuilt interactive usage ###
-
-> docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' ghcr.io/uomresearchit/container-cron
-
-### Compose usage ###
-
-The containers example use in a docker-compose.yml file is demonstrated in [this file](docker-compose.yml "Docker Compose").
-
-Its contents is reproduced here
-
-```version: "3.9"
-services:
-  container-cron:
-    build: .
-    environment:
-      - cron_freq=*/1 * * * *
-      - cron_cmd=date >> /crontest.csv
+```bash
+$ docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' ghcr.io/uomresearchit/container-cron
 ```
 
-n.b. the "build" command here is to use a locally built container, in general usage you should specify the pre-built image per:
+#### Prebuilt compose usage (docker-compose) ####
+
+To use the pre-built package in a docker-compose swarm (see also [this file](docker-compose.yml "Docker Compose")):
 
 ```
 services:
   container-cron:
     image: ghcr.io/uomresearchit/container-cron
+    environment:
+      - cron_freq=*/1 * * * *
+      - cron_cmd=date >> /crontest.csv
+```
+
+---
+### Local self-built usage ###
+
+The following examples give usage for locally developing and testing the package.
+
+#### Container build ####
+
+To build locally:
+
+```
+docker build . -t container-cron
+```
+
+#### Interactive usage ####
+
+To run a locally built package:
+
+```
+docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' container-cron
+```
+
+### Compose usage ###
+
+To use a local image in docker-compose
+
+```version: "3.9"
+services:
+  container-cron:
+    build: .
     environment:
       - cron_freq=*/1 * * * *
       - cron_cmd=date >> /crontest.csv
