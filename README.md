@@ -61,7 +61,7 @@ To run a locally built package:
 docker run --env cron_freq='*/1 * * * *' --env cron_cmd='date >> /crontest.csv' container-cron
 ```
 
-### Compose usage ###
+##̣## Compose usage ####
 
 To use a local image in docker-compose
 
